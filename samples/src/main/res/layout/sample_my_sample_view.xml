@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:id="@+id/textview_name"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/content_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    <TextView
+        android:id="@+id/label_objective"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_name"
+        android:paddingBottom="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/label_objective"
+        android:textIsSelectable="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_objective"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label_objective"
+        android:paddingBottom="16dp"
+        android:textIsSelectable="true"
+        android:text="@string/content_objective" />
+
+    <TextView
+        android:id="@+id/label_motto"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_objective"
+        android:paddingBottom="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/label_motto"
+        android:textIsSelectable="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_motto"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label_motto"
+        android:paddingBottom="16dp"
+        android:textIsSelectable="true"
+        android:text="@string/content_motto" />
+
+    <TextView
+        android:id="@+id/label_contact_info"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textview_motto"
+        android:paddingBottom="16dp"
+        android:text="@string/label_content_info"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/label_phone"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label_contact_info"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/label_phone"
+        android:textIsSelectable="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/label_email"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label_phone"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/label_email"
+        android:textIsSelectable="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_phone"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/label_phone"
+        android:layout_toEndOf="@+id/label_phone"
+        android:layout_toRightOf="@+id/label_phone"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:textIsSelectable="true"
+        android:text="@string/content_phone" />
+
+    <TextView
+        android:id="@+id/textview_email"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/label_email"
+        android:layout_toEndOf="@+id/label_phone"
+        android:layout_toRightOf="@+id/label_phone"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:textIsSelectable="true"
+        android:text="@string/content_email" />
+
+</RelativeLayout>

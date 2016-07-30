@@ -1,0 +1,9 @@
+<resources>
+    <declare-styleable name="MySampleView">
+        <attr name="name" format="string" />
+        <attr name="objective" format="string" />
+        <attr name="phone" format="string" />
+        <attr name="email" format="string" />
+        <attr name="motto" format="string" />
+    </declare-styleable>
+</resources>
