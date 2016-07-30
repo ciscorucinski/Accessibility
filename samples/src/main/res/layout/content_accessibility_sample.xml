@@ -10,5 +10,8 @@
 
     <io.github.ciscorucinski.accessibility.samples.ui.custom.MySampleAccessibleView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:name="@string/content_name"
+        app:objective="@string/content_objective"
+        app:motto="@string/content_motto" />
 </FrameLayout>

@@ -79,7 +79,6 @@ public class MySampleView extends RelativeLayout {
 
     }
 
-
     private void invalidateView() {
 
         txtName.setText(name);

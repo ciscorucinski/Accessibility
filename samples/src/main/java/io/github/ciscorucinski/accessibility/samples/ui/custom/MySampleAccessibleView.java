@@ -16,17 +16,17 @@ public class MySampleAccessibleView extends RelativeLayout {
 
     private ViewGroup root;
 
-    private String name;
-    private String objective;
-    private String motto;
-    private String phone;
-    private String email;
-
     private TextView txtName;
     private TextView txtObjective;
     private TextView txtMotto;
     private TextView txtPhone;
     private TextView txtEmail;
+
+    private String name;
+    private String objective;
+    private String motto;
+    private String phone;
+    private String email;
 
     public MySampleAccessibleView(Context context) {
 
@@ -69,12 +69,12 @@ public class MySampleAccessibleView extends RelativeLayout {
         txtPhone = (TextView) root.findViewById(R.id.textview_phone);
         txtEmail = (TextView) root.findViewById(R.id.textview_email);
 
+        // Use the default text if none of the custom xml attributes are used in the layout declaration
         if (name == null) name = txtName.getText().toString();
         if (objective == null) objective = txtObjective.getText().toString();
         if (motto == null) motto = txtMotto.getText().toString();
         if (phone == null) phone = txtPhone.getText().toString();
         if (email == null) email = txtEmail.getText().toString();
-
 
         // Declare Navigation Accessibility
         Accessibility.with(root)
@@ -108,19 +108,6 @@ public class MySampleAccessibleView extends RelativeLayout {
 
     }
 
-//    @Override
-//    public void populate(Resume.People data) {
-//
-//        name = data.name();
-//        objective = data.objective();
-//        motto = data.motto();
-//        phone = data.phone();
-//        email = data.email();
-//
-//        invalidateView();
-//
-//    }
-
     private void invalidateView() {
 
         txtName.setText(name);
@@ -136,16 +123,16 @@ public class MySampleAccessibleView extends RelativeLayout {
                         .prepend("Applicant Name is ").complete()
                 .setAccessibilityTextOn(txtObjective)
                     .setModifiableContentDescription(getObjective())
-                        .prepend(getResources().getString(R.string.label_objective) + " is ").complete()
+                        .prepend(getResources().getString(R.string.label_objective) + " is ").complete() // i.e "Label is"
                 .setAccessibilityTextOn(txtMotto)
                     .setModifiableContentDescription(getMotto())
-                        .prepend(getResources().getString(R.string.label_motto) + " is ").complete()
+                        .prepend(getResources().getString(R.string.label_motto) + " is ").complete()    // i.e "Motto is"
                 .setAccessibilityTextOn(txtPhone)
                     .setModifiableContentDescription(getPhone())
-                        .prepend(getResources().getString(R.string.label_phone) + " is ").complete()
+                        .prepend(getResources().getString(R.string.label_phone) + " is ").complete()    // i.e "Phone is"
                 .setAccessibilityTextOn(txtEmail)
                     .setModifiableContentDescription(getEmail())
-                        .prepend(getResources().getString(R.string.label_email) + " is ").complete();
+                        .prepend(getResources().getString(R.string.label_email) + " is ").complete();   // i.e "Email is"
 
     }
 

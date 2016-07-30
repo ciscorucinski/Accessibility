@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class GenericFragment extends Fragment {
+public class LayoutResourceFragment extends Fragment {
 
     /**
      * The fragment argument representing the layout resource for this
@@ -18,14 +18,14 @@ public class GenericFragment extends Fragment {
      */
     private static final String ARG_LAYOUT = "layout_resource";
 
-    public GenericFragment() { }
+    public LayoutResourceFragment() { }
 
     /**
      * Returns a new instance of this fragment for the layout resource.
      */
-    static GenericFragment newInstance(@LayoutRes int layoutRes) {
+    public static LayoutResourceFragment newInstance(@LayoutRes int layoutRes) {
 
-        GenericFragment fragment = new GenericFragment();
+        LayoutResourceFragment fragment = new LayoutResourceFragment();
         Bundle args = new Bundle();
 
         args.putInt(ARG_LAYOUT, layoutRes);

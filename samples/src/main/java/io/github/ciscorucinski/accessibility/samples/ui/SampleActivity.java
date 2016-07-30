@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import io.github.ciscorucinski.accessibility.R;
+import io.github.ciscorucinski.accessibility.samples.SectionsPagerAdapter;
 
 public class SampleActivity extends AppCompatActivity {
 

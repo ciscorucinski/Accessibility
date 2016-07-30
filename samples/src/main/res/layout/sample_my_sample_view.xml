@@ -9,7 +9,7 @@
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/content_name"
+        android:text="@string/content_name_default"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_below="@+id/label_objective"
         android:paddingBottom="16dp"
         android:textIsSelectable="true"
-        android:text="@string/content_objective" />
+        android:text="@string/content_objective_default" />
 
     <TextView
         android:id="@+id/label_motto"
@@ -62,7 +62,7 @@
         android:layout_below="@+id/label_motto"
         android:paddingBottom="16dp"
         android:textIsSelectable="true"
-        android:text="@string/content_motto" />
+        android:text="@string/content_motto_default" />
 
     <TextView
         android:id="@+id/label_contact_info"
@@ -118,7 +118,7 @@
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:textIsSelectable="true"
-        android:text="@string/content_phone" />
+        android:text="@string/content_phone_default" />
 
     <TextView
         android:id="@+id/textview_email"
@@ -132,6 +132,6 @@
         android:paddingEnd="8dp"
         android:paddingStart="8dp"
         android:textIsSelectable="true"
-        android:text="@string/content_email" />
+        android:text="@string/content_email_default" />
 
 </RelativeLayout>
