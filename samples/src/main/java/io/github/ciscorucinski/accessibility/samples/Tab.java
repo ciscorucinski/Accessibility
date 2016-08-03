@@ -4,36 +4,61 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 
 import io.github.ciscorucinski.accessibility.R;
-import io.github.ciscorucinski.accessibility.samples.ui.LayoutResourceFragment;
 
-public enum Tab {
+public class Tab {
 
-    DEFAULT     (R.layout.content_sample),
-    ACCESSIBLE  (R.layout.content_accessibility_sample);
+    // Initialize tab enumeration
+    private static final Tab[] tabs = {
+            new Tab("DEFAULT", R.layout.content_sample, R.layout.content_accessibility_sample)
+//            new Tab("EXAMPLE 1", R.layout.content_sample, R.layout.content_accessibility_sample),
+//            new Tab("EXAMPLE 2", R.layout.content_sample, R.layout.content_accessibility_sample)
+    };
+    private static FragmentType tabType;
+    private final String name;
+    private @LayoutRes int defaultRes;
+    private @LayoutRes int accessibleRes;
 
-    private final Fragment fragment;
+    private Tab(String name, @LayoutRes int defaultLayoutRes, @LayoutRes int accessibleLayoutRes) {
+        this.name = name;
+        this.defaultRes = defaultLayoutRes;
+        this.accessibleRes = accessibleLayoutRes;
 
-    private static Tab[] tabs = values();
-    private static int tabCount = tabs.length;
+        tabType = FragmentType.DEFAULT;
+        tabType.setCurrentLayout(defaultRes);
 
-    Tab(@LayoutRes int layoutRes) {
-        this.fragment = LayoutResourceFragment.newInstance(layoutRes);
     }
 
-    public static Tab get(int position) {
-        if (position > tabCount - 1) return DEFAULT;
+    static Tab get(int position) {
+        if (position > tabs.length - 1) return tabs[0];
         return tabs[position];
     }
 
     public static int count() {
-        return tabCount;
+        return tabs.length;
     }
 
     public String getName() {
-        return this.name();
+        return this.name;
     }
 
-    public Fragment getFragment() {
-        return this.fragment;
+    public Fragment getDisplayFragment() {
+        return tabType.getFragment();
     }
+
+    public void setLayoutDisplayType(FragmentType type) {
+
+        tabType = type;
+
+        switch (type) {
+            case DEFAULT:
+                setCurrentLayout(defaultRes); break;
+            case ACCESSIBLE:
+                setCurrentLayout(accessibleRes); break;
+        }
+    }
+
+    private void setCurrentLayout(@LayoutRes int layoutRes) {
+        tabType.setCurrentLayout(layoutRes);
+    }
+
 }

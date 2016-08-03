@@ -1,6 +1,7 @@
 package io.github.ciscorucinski.accessibility.samples.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import io.github.ciscorucinski.accessibility.R;
+import io.github.ciscorucinski.accessibility.samples.FragmentType;
 import io.github.ciscorucinski.accessibility.samples.SectionsPagerAdapter;
 
 public class SampleActivity extends AppCompatActivity {
@@ -24,22 +26,41 @@ public class SampleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        final SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
 
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
+            FragmentType currentType = FragmentType.DEFAULT;
+
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                int currentPosition = viewPager.getCurrentItem();
+
+                // swap the current icon with the new one
+                currentType = (currentType == FragmentType.DEFAULT)
+                        ? (FragmentType.ACCESSIBLE)
+                        : (FragmentType.DEFAULT);
+
+                // replace the FAB and Fragment
+                fab.setImageResource(currentType.getIconResource());
+                adapter.setFragmentDisplayType(currentPosition, currentType);
+
+                Snackbar.make(view, currentType.getUserMessage(), Snackbar.LENGTH_LONG).show();
+
             }
         });
+
+        // Let the user know that the UI is NOT accessible at the start
+        CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.main_content);
+        Snackbar.make(coordinator, FragmentType.DEFAULT.getUserMessage(), Snackbar.LENGTH_LONG).show();
 
     }
 
