@@ -15,15 +15,13 @@ public enum FragmentType {
     private final @DrawableRes int icon;
     private final String message;
 
-    private @LayoutRes int currentLayoutResource;
-
     FragmentType(@DrawableRes int icon, String message) {
         this.icon = icon;
         this.message = message;
     }
 
-    public Fragment getFragment() {
-        return LayoutResourceFragment.newInstance(currentLayoutResource);
+    public Fragment getFragment(@LayoutRes int layoutRes) {
+        return LayoutResourceFragment.newInstance(layoutRes);
     }
 
     public int getIconResource() {
@@ -33,9 +31,4 @@ public enum FragmentType {
     public String getUserMessage() {
         return message;
     }
-
-    public void setCurrentLayout(@LayoutRes int layoutRes) {
-        currentLayoutResource = layoutRes;
-    }
-
 }

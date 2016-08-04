@@ -11,6 +11,7 @@ class Tab {
     private static final Tab[] tabs = {
             new Tab("DEFAULT", R.layout.content_sample, R.layout.content_accessibility_sample)
     };
+
     private static FragmentType tabType;
     private final String name;
     private @LayoutRes int defaultRes;
@@ -22,8 +23,6 @@ class Tab {
         this.accessibleRes = accessibleLayoutRes;
 
         tabType = FragmentType.DEFAULT;
-        tabType.setCurrentLayout(defaultRes);
-
     }
 
     static Tab get(int position) {
@@ -40,23 +39,16 @@ class Tab {
     }
 
     Fragment getDisplayFragment() {
-        return tabType.getFragment();
-    }
 
-    void setLayoutDisplayType(FragmentType type) {
-
-        tabType = type;
-
-        switch (type) {
-            case DEFAULT:
-                setCurrentLayout(defaultRes); break;
-            case ACCESSIBLE:
-                setCurrentLayout(accessibleRes); break;
+        switch (tabType) {
+            default:            // Cascade default case
+            case DEFAULT:       return tabType.getFragment(defaultRes);
+            case ACCESSIBLE:    return tabType.getFragment(accessibleRes);
         }
     }
 
-    private void setCurrentLayout(@LayoutRes int layoutRes) {
-        tabType.setCurrentLayout(layoutRes);
+    void setLayoutDisplayType(FragmentType type) {
+        tabType = type;
     }
 
 }
