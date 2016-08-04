@@ -33,7 +33,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return Tab.get(position).getName();
+        return Tab.get(position).getDisplayName();
     }
 
     public void setFragmentDisplayType(int position, FragmentType type) {

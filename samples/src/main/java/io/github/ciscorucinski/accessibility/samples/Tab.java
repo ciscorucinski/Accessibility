@@ -5,13 +5,11 @@ import android.support.v4.app.Fragment;
 
 import io.github.ciscorucinski.accessibility.R;
 
-public class Tab {
+class Tab {
 
     // Initialize tab enumeration
     private static final Tab[] tabs = {
             new Tab("DEFAULT", R.layout.content_sample, R.layout.content_accessibility_sample)
-//            new Tab("EXAMPLE 1", R.layout.content_sample, R.layout.content_accessibility_sample),
-//            new Tab("EXAMPLE 2", R.layout.content_sample, R.layout.content_accessibility_sample)
     };
     private static FragmentType tabType;
     private final String name;
@@ -33,19 +31,19 @@ public class Tab {
         return tabs[position];
     }
 
-    public static int count() {
+    static int count() {
         return tabs.length;
     }
 
-    public String getName() {
+    String getDisplayName() {
         return this.name;
     }
 
-    public Fragment getDisplayFragment() {
+    Fragment getDisplayFragment() {
         return tabType.getFragment();
     }
 
-    public void setLayoutDisplayType(FragmentType type) {
+    void setLayoutDisplayType(FragmentType type) {
 
         tabType = type;
 

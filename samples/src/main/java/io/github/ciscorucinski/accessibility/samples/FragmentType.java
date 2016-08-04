@@ -30,7 +30,9 @@ public enum FragmentType {
         return icon;
     }
 
-    public String getUserMessage() { return message; }
+    public String getUserMessage() {
+        return message;
+    }
 
     public void setCurrentLayout(@LayoutRes int layoutRes) {
         currentLayoutResource = layoutRes;
