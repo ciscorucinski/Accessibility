@@ -5,6 +5,8 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 
 import io.github.ciscorucinski.accessibility.R;
+import io.github.ciscorucinski.accessibility.samples.interfaces.FabInteractor;
+import io.github.ciscorucinski.accessibility.samples.interfaces.Swappable;
 import io.github.ciscorucinski.accessibility.samples.ui.LayoutResourceFragment;
 
 public enum FragmentType implements Swappable<FragmentType>, FabInteractor {
