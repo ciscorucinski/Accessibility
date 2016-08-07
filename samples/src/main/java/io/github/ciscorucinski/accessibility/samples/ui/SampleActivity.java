@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import io.github.ciscorucinski.accessibility.Accessibility;
 import io.github.ciscorucinski.accessibility.R;
 import io.github.ciscorucinski.accessibility.samples.FragmentType;
 import io.github.ciscorucinski.accessibility.samples.SectionsPagerAdapter;
@@ -35,6 +36,7 @@ public class SampleActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(FragmentType.ACCESSIBLE.getIconResource()); // First display accessible icon
         fab.setOnClickListener(new View.OnClickListener() {
 
             FragmentType currentType = FragmentType.DEFAULT;
@@ -42,17 +44,21 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                int currentPosition = viewPager.getCurrentItem();
+                int currentTabPosition = viewPager.getCurrentItem();
+
+                // Icon needs to be what was displayed in the fab before click
+                fab.setImageResource(currentType.getIconResource());
+
+                Accessibility.with(fab).setAccessibilityText().setContentDescription(
+                        String.format("Switch to %s layout", currentType.name()));
 
                 // swap the current icon with the new one
-                currentType = (currentType == FragmentType.DEFAULT)
-                        ? (FragmentType.ACCESSIBLE)
-                        : (FragmentType.DEFAULT);
+                currentType = currentType.swap();
 
-                // replace the FAB and Fragment
-                fab.setImageResource(currentType.getIconResource());
-                adapter.setFragmentDisplayType(currentPosition, currentType);
+                // Fragment type needs to be what is currently displayed to the user
+                adapter.setFragmentDisplayType(currentTabPosition, currentType);
 
+                // User message needs to be what is currently displayed to the user
                 Snackbar.make(view, currentType.getUserMessage(), Snackbar.LENGTH_LONG).show();
 
             }

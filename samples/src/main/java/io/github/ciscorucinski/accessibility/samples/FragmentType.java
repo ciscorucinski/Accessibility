@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import io.github.ciscorucinski.accessibility.R;
 import io.github.ciscorucinski.accessibility.samples.ui.LayoutResourceFragment;
 
-public enum FragmentType {
+public enum FragmentType implements Swappable<FragmentType> {
 
     DEFAULT     (R.drawable.ic_nonaccessible_black_alpha54, "Accessibility Disabled"),
     ACCESSIBLE  (R.drawable.ic_accessible_black_alpha54, "Accessibility Enabled");
@@ -30,5 +30,14 @@ public enum FragmentType {
 
     public String getUserMessage() {
         return message;
+    }
+
+    @Override
+    public FragmentType swap() {
+        switch (this) {
+            default:
+            case DEFAULT:       return ACCESSIBLE;
+            case ACCESSIBLE:    return DEFAULT;
+        }
     }
 }
