@@ -9,7 +9,8 @@ class Tab {
 
     // Initialize tab enumeration
     private static final Tab[] tabs = {
-            new Tab("DEFAULT", R.layout.content_sample, R.layout.content_accessibility_sample)
+            new Tab("REGULAR LAYOUT", R.layout.content_regular_sample, R.layout.content_regular_sample),
+            new Tab("CUSTOM VIEW", R.layout.content_customview_sample, R.layout.content_accessibility_sample)
     };
 
     private static FragmentType tabType;

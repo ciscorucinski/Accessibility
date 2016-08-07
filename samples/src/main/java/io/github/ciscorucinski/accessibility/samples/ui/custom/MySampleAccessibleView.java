@@ -49,7 +49,7 @@ public class MySampleAccessibleView extends RelativeLayout {
     private void init(AttributeSet attrs, int defStyle) {
 
         root = (ViewGroup) LayoutInflater.from(getContext()).inflate(
-                R.layout.sample_my_sample_view, this, true);
+                R.layout.content_regular_sample, this, true);
 
         // Load attributes
         final TypedArray a = getContext().obtainStyledAttributes(
