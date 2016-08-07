@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import io.github.ciscorucinski.accessibility.R;
 import io.github.ciscorucinski.accessibility.samples.ui.LayoutResourceFragment;
 
-public enum FragmentType implements Swappable<FragmentType> {
+public enum FragmentType implements Swappable<FragmentType>, FabInteractor {
 
     DEFAULT     (R.drawable.ic_nonaccessible_black_alpha54, "Accessibility Disabled"),
     ACCESSIBLE  (R.drawable.ic_accessible_black_alpha54, "Accessibility Enabled");
@@ -24,10 +24,12 @@ public enum FragmentType implements Swappable<FragmentType> {
         return LayoutResourceFragment.newInstance(layoutRes);
     }
 
+    @Override
     public int getIconResource() {
         return icon;
     }
 
+    @Override
     public String getUserMessage() {
         return message;
     }
