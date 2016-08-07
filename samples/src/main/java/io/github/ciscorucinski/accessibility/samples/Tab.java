@@ -15,6 +15,7 @@ class Tab {
 
     private static FragmentType tabType;
     private final String name;
+    private final boolean shouldEnforceAccessibility;
     private @LayoutRes int defaultRes;
     private @LayoutRes int accessibleRes;
 
@@ -22,6 +23,8 @@ class Tab {
         this.name = name;
         this.defaultRes = defaultLayoutRes;
         this.accessibleRes = accessibleLayoutRes;
+
+        this.shouldEnforceAccessibility = (defaultRes == accessibleRes);
 
         tabType = FragmentType.DEFAULT;
     }
@@ -43,8 +46,8 @@ class Tab {
 
         switch (tabType) {
             default:            // Cascade default case
-            case DEFAULT:       return tabType.getFragment(defaultRes);
-            case ACCESSIBLE:    return tabType.getFragment(accessibleRes);
+            case DEFAULT:    return tabType.getFragment(defaultRes, false);
+            case ACCESSIBLE: return tabType.getFragment(accessibleRes, shouldEnforceAccessibility);
         }
     }
 

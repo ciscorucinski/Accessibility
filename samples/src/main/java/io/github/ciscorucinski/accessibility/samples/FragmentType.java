@@ -22,7 +22,8 @@ public enum FragmentType implements Swappable<FragmentType>, FabInteractor {
         this.message = message;
     }
 
-    public Fragment getFragment(@LayoutRes int layoutRes) {
+    public Fragment getFragment(@LayoutRes int layoutRes, boolean enforceAccessibility) {
+        if (enforceAccessibility) return LayoutResourceFragment.newEnforcedAccessibleInstance(layoutRes);
         return LayoutResourceFragment.newInstance(layoutRes);
     }
 
