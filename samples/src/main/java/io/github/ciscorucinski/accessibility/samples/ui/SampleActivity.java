@@ -3,19 +3,18 @@ package io.github.ciscorucinski.accessibility.samples.ui;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import io.github.ciscorucinski.accessibility.Accessibility;
 import io.github.ciscorucinski.accessibility.R;
+import io.github.ciscorucinski.accessibility.samples.FabFactory;
 import io.github.ciscorucinski.accessibility.samples.FragmentType;
 import io.github.ciscorucinski.accessibility.samples.SectionsPagerAdapter;
+import io.github.ciscorucinski.accessibility.samples.fab.FabHandler;
 
 public class SampleActivity extends AppCompatActivity {
 
@@ -24,52 +23,23 @@ public class SampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.main_content);
 
         final SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+
+        setSupportActionBar(toolbar);
 
         viewPager.setAdapter(adapter);
-
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageResource(FragmentType.ACCESSIBLE.getIconResource()); // First display accessible icon
-        fab.setOnClickListener(new View.OnClickListener() {
-
-            FragmentType currentType = FragmentType.DEFAULT;
-
-            @Override
-            public void onClick(View view) {
-
-                int currentTabPosition = viewPager.getCurrentItem();
-
-                // Icon needs to be what was displayed in the fab before click
-                fab.setImageResource(currentType.getIconResource());
-
-                Accessibility.with(fab).setAccessibilityText().setContentDescription(
-                        String.format("Switch to %s layout", currentType.name()));
-
-                // swap the current icon with the new one
-                currentType = currentType.swap();
-
-                // Fragment type needs to be what is currently displayed to the user
-                adapter.setFragmentDisplayType(currentTabPosition, currentType);
-
-                // User message needs to be what is currently displayed to the user
-                Snackbar.make(view, currentType.getUserMessage(), Snackbar.LENGTH_LONG).show();
-
-            }
-        });
-
-        // Let the user know that the UI is NOT accessible at the start
-        CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.main_content);
-        Snackbar.make(coordinator, FragmentType.DEFAULT.getUserMessage(), Snackbar.LENGTH_LONG).show();
+        FabHandler updater = FabFactory.createHandler(fab, coordinator, viewPager, adapter, this);
+        updater.update(FragmentType.ACCESSIBLE);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
