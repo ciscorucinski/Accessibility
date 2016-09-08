@@ -4,70 +4,32 @@ import android.view.View;
 
 import io.github.ciscorucinski.accessibility.interfaces.ContentDescriptionAccessibility;
 import io.github.ciscorucinski.accessibility.interfaces.ModifiableContentDescriptionAccessibility;
+import io.github.ciscorucinski.accessibility.view.ViewHandler;
 
 @SuppressWarnings("unused")
-public class TextAccessibilityDelegate<V> implements ContentDescriptionAccessibility<V>, ModifiableContentDescriptionAccessibility<V> {
+public class TextAccessibilityDelegate<V> implements ContentDescriptionAccessibility<V> {
 
     private final V accessibility;
     private final View parentView;
+    private final ViewHandler viewHandler;
 
     private StringBuilder mainText;
-    private StringBuilder prependText;
-    private StringBuilder appendText;
-    private boolean isModified;
 
     public TextAccessibilityDelegate(V accessibility, View parentView) {
         this.accessibility = accessibility;
         this.parentView = parentView;
-
-        this.appendText = new StringBuilder();
-        this.prependText = new StringBuilder();
-    }
-
-    @Override
-    public ModifiableContentDescriptionAccessibility<V> prepend(CharSequence prependedText) {
-        this.prependText.insert(0, prependedText);
-        return this;
-    }
-
-    @Override
-    public ModifiableContentDescriptionAccessibility<V> appendablePrepend(CharSequence prependedText) {
-        this.prependText.append(prependedText);
-        return this;
-    }
-
-    @Override
-    public ModifiableContentDescriptionAccessibility<V> append(CharSequence appendedText) {
-        this.appendText.append(appendedText);
-        return this;
+        this.viewHandler = new ViewHandler();
     }
 
     @Override
     public V setContentDescription(CharSequence text) {
-        this.mainText = new StringBuilder().append(text);
-        return complete();
+        viewHandler.contentView(parentView, text);
+        return accessibility;
     }
 
     @Override
     public ModifiableContentDescriptionAccessibility<V> setModifiableContentDescription(CharSequence text) {
-        if (text != null) {
-            this.isModified = true;
-        }
-
-        this.mainText = new StringBuilder().append(text);
-        return this;
+        return new ModifiableTextAccessibilityHandler<>(accessibility, parentView, text);
     }
 
-    @Override
-    public V complete() {
-
-        if (isModified) {
-            TextAccessibilityHandler.modifiable(parentView, prependText, mainText, appendText);
-        } else {
-            TextAccessibilityHandler.fixed(parentView, mainText);
-        }
-
-        return this.accessibility;
-
-    }
 }
