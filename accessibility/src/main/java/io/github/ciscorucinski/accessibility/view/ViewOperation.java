@@ -6,9 +6,7 @@ import android.view.View;
 @SuppressWarnings("unused")
 interface ViewOperation {
 
-    // User of code can do whatever they want - however they want. However, the methods that have
-    //     generic return types are rabbit holes that must be followed and "completed" before
-    //     coming back to this interface.
+    // These are all the view operations that are allowed via the library
 
     void requestFocus(View parentView);
     void disableNavigation(View parentView);
