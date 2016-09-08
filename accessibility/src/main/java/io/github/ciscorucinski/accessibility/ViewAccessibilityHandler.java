@@ -33,7 +33,7 @@ class ViewAccessibilityHandler implements ViewAccessibility {
 
     @Override
     public ViewAccessibility disableFocusableNavigation() {
-        viewHandler.disableFocusableNavigation(view);
+        viewHandler.disableNavigation(view);
         return this;
     }
 

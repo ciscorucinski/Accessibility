@@ -13,7 +13,7 @@ public class ViewHandler implements ViewOperation {
     }
 
     @Override
-    public void disableFocusableNavigation(View parentView) {
+    public void disableNavigation(View parentView) {
         parentView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
     }
 
@@ -44,7 +44,7 @@ public class ViewHandler implements ViewOperation {
 
 
     @Override
-    public void setContentView(View parentView, CharSequence text) {
+    public void contentView(View parentView, CharSequence text) {
         parentView.setContentDescription(text);
     }
 }

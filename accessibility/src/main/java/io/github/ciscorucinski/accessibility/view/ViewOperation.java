@@ -11,7 +11,7 @@ interface ViewOperation {
     //     coming back to this interface.
 
     void requestFocus(View parentView);
-    void disableFocusableNavigation(View parentView);
+    void disableNavigation(View parentView);
 
     void up(View viewGroup, @IdRes int viewID);
     void down(View viewGroup, @IdRes int viewID);
@@ -19,6 +19,6 @@ interface ViewOperation {
     void right(View viewGroup, @IdRes int viewID);
     void focusForward(View viewGroup, @IdRes int viewID);
 
-    void setContentView(View parentView, CharSequence text);
+    void contentView(View parentView, CharSequence text);
 
 }

@@ -46,7 +46,7 @@ class ViewGroupAccessibilityHandler implements ViewGroupAccessibility {
     @Override
     public ViewGroupAccessibility disableFocusableNavigationOn(@IdRes int... ids) {
         for (int id : ids) {
-            viewHandler.disableFocusableNavigation(viewGroup.findViewById(id));
+            viewHandler.disableNavigation(viewGroup.findViewById(id));
         }
         return this;
     }
@@ -54,7 +54,7 @@ class ViewGroupAccessibilityHandler implements ViewGroupAccessibility {
     @Override
     public ViewGroupAccessibility disableFocusableNavigationOn(View... views) {
         for (View view : views) {
-            viewHandler.disableFocusableNavigation(view);
+            viewHandler.disableNavigation(view);
         }
         return this;
     }

@@ -14,11 +14,11 @@ public class TextAccessibilityHandler {
         CharSequence contentDescription = new StringBuilder(prependText)
                 .append(mainText).append(appendText);
 
-        viewHandler.setContentView(parentView, contentDescription);
+        viewHandler.contentView(parentView, contentDescription);
 
     }
 
     static void fixed(View parentView, CharSequence contentDescription) {
-        viewHandler.setContentView(parentView, contentDescription);
+        viewHandler.contentView(parentView, contentDescription);
     }
 }
