@@ -2,33 +2,23 @@ package io.github.ciscorucinski.accessibility.content;
 
 import android.view.View;
 
-public class TextAccessibilityHandler implements ContentDescription {
+import io.github.ciscorucinski.accessibility.view.ViewHandler;
 
-    private final View parentView;
+public class TextAccessibilityHandler {
 
-    public TextAccessibilityHandler(View view) {
-        this.parentView = view;
-    }
+    private static final ViewHandler viewHandler = new ViewHandler();
 
-    @Override
-    public void setContentDescription(CharSequence text) {
-        parentView.setContentDescription(text);
-    }
+    static void modifiable(View parentView, CharSequence prependText,
+                           CharSequence mainText, CharSequence appendText) {
 
-    public static ContentDescription modifiable(View parentView, CharSequence prependText, CharSequence mainText, CharSequence appendText) {
+        CharSequence contentDescription = new StringBuilder(prependText)
+                .append(mainText).append(appendText);
 
-        CharSequence contentDescription =
-                new StringBuilder(prependText)
-                        .append(mainText).append(appendText);
-
-        return fixed(parentView, contentDescription);
+        viewHandler.setContentView(parentView, contentDescription);
 
     }
 
-    public static ContentDescription fixed(View parentView, CharSequence contentDescription) {
-        ContentDescription textAccessibility = new TextAccessibilityHandler(parentView);
-        textAccessibility.setContentDescription(contentDescription);
-
-        return textAccessibility;
+    static void fixed(View parentView, CharSequence contentDescription) {
+        viewHandler.setContentView(parentView, contentDescription);
     }
 }

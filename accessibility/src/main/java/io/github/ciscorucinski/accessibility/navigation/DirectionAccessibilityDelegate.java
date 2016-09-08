@@ -4,12 +4,14 @@ import android.support.annotation.IdRes;
 import android.view.View;
 
 import io.github.ciscorucinski.accessibility.interfaces.DirectionAccessibility;
+import io.github.ciscorucinski.accessibility.view.ViewHandler;
 
 @SuppressWarnings("unused")
 public class DirectionAccessibilityDelegate<V> implements DirectionAccessibility<V> {
 
     private final V accessibility;
-    private final DirectionHandler<V> handler;
+    private final ViewHandler handler;
+    private View parentView;
 
     public DirectionAccessibilityDelegate(V accessibility, View viewGroup, @IdRes int parentViewId) {
         this(accessibility, viewGroup.findViewById(parentViewId));
@@ -17,14 +19,30 @@ public class DirectionAccessibilityDelegate<V> implements DirectionAccessibility
 
     public DirectionAccessibilityDelegate(V accessibility, View view) {
         this.accessibility = accessibility;
-        this.handler = new DirectionHandler<>(this, view);
+        this.parentView = view;
+        this.handler = new ViewHandler();
     }
 
-    public DirectionAccessibility<V> up(@IdRes int viewId) { return handler.up(viewId); }
-    public DirectionAccessibility<V> down(@IdRes int viewId) { return handler.down(viewId); }
-    public DirectionAccessibility<V> left(@IdRes int viewId) { return handler.left(viewId); }
-    public DirectionAccessibility<V> right(@IdRes int viewId) { return handler.right(viewId); }
-    public DirectionAccessibility<V> focusForward(@IdRes int viewId) { return handler.focusForward(viewId); }
+    public DirectionAccessibility<V> up(@IdRes int viewId) {
+        handler.up(parentView, viewId);
+        return this;
+    }
+    public DirectionAccessibility<V> down(@IdRes int viewId) {
+        handler.down(parentView, viewId);
+        return this;
+    }
+    public DirectionAccessibility<V> left(@IdRes int viewId) {
+        handler.left(parentView, viewId);
+        return this;
+    }
+    public DirectionAccessibility<V> right(@IdRes int viewId) {
+        handler.right(parentView, viewId);
+        return this;
+    }
+    public DirectionAccessibility<V> focusForward(@IdRes int viewId) {
+        handler.focusForward(parentView, viewId);
+        return this;
+    }
 
     @Override
     public V complete() {

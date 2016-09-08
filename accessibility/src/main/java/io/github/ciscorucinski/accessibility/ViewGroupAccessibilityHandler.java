@@ -9,14 +9,17 @@ import io.github.ciscorucinski.accessibility.interfaces.ContentDescriptionAccess
 import io.github.ciscorucinski.accessibility.interfaces.DirectionAccessibility;
 import io.github.ciscorucinski.accessibility.interfaces.ViewGroupAccessibility;
 import io.github.ciscorucinski.accessibility.navigation.DirectionAccessibilityDelegate;
+import io.github.ciscorucinski.accessibility.view.ViewHandler;
 
 @SuppressWarnings("unused")
 class ViewGroupAccessibilityHandler implements ViewGroupAccessibility {
 
     private View viewGroup;
+    private ViewHandler viewHandler;
 
     ViewGroupAccessibilityHandler(ViewGroup viewGroup) {
         this.viewGroup = viewGroup;
+        this.viewHandler = new ViewHandler();
     }
 
     @Override
@@ -36,14 +39,14 @@ class ViewGroupAccessibilityHandler implements ViewGroupAccessibility {
 
     @Override
     public ViewGroupAccessibility requestFocusOn(View parentView) {
-        parentView.requestFocus();
+        viewHandler.requestFocus(parentView);
         return this;
     }
 
     @Override
     public ViewGroupAccessibility disableFocusableNavigationOn(@IdRes int... ids) {
         for (int id : ids) {
-            setViewNotImportantForAccessibility(viewGroup.findViewById(id));
+            viewHandler.disableFocusableNavigation(viewGroup.findViewById(id));
         }
         return this;
     }
@@ -51,13 +54,9 @@ class ViewGroupAccessibilityHandler implements ViewGroupAccessibility {
     @Override
     public ViewGroupAccessibility disableFocusableNavigationOn(View... views) {
         for (View view : views) {
-            setViewNotImportantForAccessibility(view);
+            viewHandler.disableFocusableNavigation(view);
         }
         return this;
-    }
-
-    private void setViewNotImportantForAccessibility(View parentView) {
-        parentView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
     }
 
     @Override

@@ -7,14 +7,17 @@ import io.github.ciscorucinski.accessibility.interfaces.ContentDescriptionAccess
 import io.github.ciscorucinski.accessibility.interfaces.DirectionAccessibility;
 import io.github.ciscorucinski.accessibility.interfaces.ViewAccessibility;
 import io.github.ciscorucinski.accessibility.navigation.DirectionAccessibilityDelegate;
+import io.github.ciscorucinski.accessibility.view.ViewHandler;
 
 @SuppressWarnings("unused")
 class ViewAccessibilityHandler implements ViewAccessibility {
 
     private View view;
+    private ViewHandler viewHandler;
 
     ViewAccessibilityHandler(View view) {
         this.view = view;
+        this.viewHandler = new ViewHandler();
     }
 
     @Override
@@ -24,13 +27,13 @@ class ViewAccessibilityHandler implements ViewAccessibility {
 
     @Override
     public ViewAccessibility requestFocus() {
-        view.requestFocus();
+        viewHandler.requestFocus(view);
         return this;
     }
 
     @Override
     public ViewAccessibility disableFocusableNavigation() {
-        view.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        viewHandler.disableFocusableNavigation(view);
         return this;
     }
 
