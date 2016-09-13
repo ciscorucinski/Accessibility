@@ -1,1 +1,1 @@
-include ':samples', ':accessibility'
+include ':accessibility', ':samples:samples-basic', ':samples:samples-indepth'
