@@ -1,4 +1,4 @@
-package io.github.ciscorucinski.accessibility.samples.ui.custom;
+package io.github.ciscorucinski.accessibility.samples.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -53,13 +53,13 @@ public class MySampleAccessibleView extends RelativeLayout {
 
         // Load attributes
         final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.MySampleView, defStyle, 0);
+                attrs, R.styleable.MySampleAccessibleView, defStyle, 0);
 
-        name = a.getString(R.styleable.MySampleView_name);
-        objective = a.getString(R.styleable.MySampleView_objective);
-        motto = a.getString(R.styleable.MySampleView_motto);
-        phone = a.getString(R.styleable.MySampleView_phone);
-        email = a.getString(R.styleable.MySampleView_email);
+        name = a.getString(R.styleable.MySampleAccessibleView_name);
+        objective = a.getString(R.styleable.MySampleAccessibleView_objective);
+        motto = a.getString(R.styleable.MySampleAccessibleView_motto);
+        phone = a.getString(R.styleable.MySampleAccessibleView_phone);
+        email = a.getString(R.styleable.MySampleAccessibleView_email);
 
         a.recycle();
 
@@ -85,21 +85,26 @@ public class MySampleAccessibleView extends RelativeLayout {
                         R.id.label_email)
 
                 .setFocusableNavigationOn(txtName)
-                    .down(R.id.textview_objective).complete()
+                .down(R.id.textview_objective).complete()
+
                 .setFocusableNavigationOn(txtObjective)
-                    .up(R.id.textview_name)
-                    .down(R.id.textview_motto).complete()
+                .up(R.id.textview_name)
+                .down(R.id.textview_motto).complete()
+
                 .setFocusableNavigationOn(txtMotto)
-                    .up(R.id.textview_objective)
-                    .down(R.id.label_contact_info).complete()
+                .up(R.id.textview_objective)
+                .down(R.id.label_contact_info).complete()
+
                 .setFocusableNavigationOn(R.id.label_contact_info)
-                    .up(R.id.textview_motto)
-                    .down(R.id.textview_phone).complete()
+                .up(R.id.textview_motto)
+                .down(R.id.textview_phone).complete()
+
                 .setFocusableNavigationOn(txtPhone)
-                    .up(R.id.textview_motto)
-                    .down(R.id.textview_email).complete()
+                .up(R.id.textview_motto)
+                .down(R.id.textview_email).complete()
+
                 .setFocusableNavigationOn(txtEmail)
-                    .up(R.id.textview_phone).complete()
+                .up(R.id.textview_phone).complete()
 
                 .requestFocusOn(R.id.textview_name);
 
@@ -119,20 +124,28 @@ public class MySampleAccessibleView extends RelativeLayout {
         // Declare Content Description Accessibility
         Accessibility.with(root)
                 .setAccessibilityTextOn(txtName)
-                    .setModifiableContentDescription(getName())
-                        .prepend("Applicant Name is ").complete()
+                .setContentDescription(String.format("Applicant name is %s",
+                        this.name))
+
                 .setAccessibilityTextOn(txtObjective)
-                    .setModifiableContentDescription(getObjective())
-                        .prepend(getResources().getString(R.string.label_objective) + " is ").complete() // i.e "Label is"
+                .setContentDescription(String.format("%s is %s",
+                        getResources().getString(R.string.label_objective),
+                        this.objective))
+
                 .setAccessibilityTextOn(txtMotto)
-                    .setModifiableContentDescription(getMotto())
-                        .prepend(getResources().getString(R.string.label_motto) + " is ").complete()    // i.e "Motto is"
+                .setContentDescription(String.format("%s is %s",
+                        getResources().getString(R.string.label_motto),
+                        this.motto))
+
                 .setAccessibilityTextOn(txtPhone)
-                    .setModifiableContentDescription(getPhone())
-                        .prepend(getResources().getString(R.string.label_phone) + " is ").complete()    // i.e "Phone is"
+                .setContentDescription(String.format("%s is %s",
+                        getResources().getString(R.string.label_phone),
+                        this.phone))
+
                 .setAccessibilityTextOn(txtEmail)
-                    .setModifiableContentDescription(getEmail())
-                        .prepend(getResources().getString(R.string.label_email) + " is ").complete();   // i.e "Email is"
+                .setContentDescription(String.format("%s is %s",
+                        getResources().getString(R.string.label_email),
+                        this.email));
 
     }
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_sample"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.github.ciscorucinski.accessibility.samples.ui.SampleActivity"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="io.github.ciscorucinski.accessibility.samples.ui.SampleActivity">
 
-    <io.github.ciscorucinski.accessibility.samples.ui.custom.MySampleAccessibleView
+    <io.github.ciscorucinski.accessibility.samples.ui.MySampleAccessibleView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:motto="@string/content_motto"
         app:name="@string/content_name"
-        app:objective="@string/content_objective"
-        app:motto="@string/content_motto" />
+        app:objective="@string/content_objective" />
 </FrameLayout>
