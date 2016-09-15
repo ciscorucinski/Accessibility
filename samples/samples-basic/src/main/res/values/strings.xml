@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Accessibility</string>
+    <string name="app_name">Basic Sample</string>
 
     <string name="label_objective">Objective</string>
     <string name="content_objective_default">Objective text paragraph.</string>

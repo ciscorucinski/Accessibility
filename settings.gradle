@@ -1,1 +1,20 @@
-include ':accessibility', ':samples:samples-basic', ':samples:samples-indepth'
+include ':accessibility', ':samples-basic', 'samples-indepth'
+
+// Set the root projects name - the Project Module
+rootProject.name = 'Accessibility'
+
+// For each module within the project - i.e. "app" module, etc...
+rootProject.children.each { project ->
+
+    // Only modify modules that contain the selected word
+    if (project.name.contains("samples")) {
+
+        // Move the module into a specific subdirectory
+        String projectDirName = "samples/$project.name"
+        project.projectDir = new File(settingsDir, projectDirName)
+
+        assert project.projectDir.isDirectory()
+        assert project.buildFile.isFile()
+
+    }
+}
