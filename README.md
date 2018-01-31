@@ -1,23 +1,22 @@
 # Accessibility
 Accessible apps allow more users to use your app; however, it is usually an afterthought for developers, and it makes your XML layout files messy whether Accessibility was a forethought or afterthought. This library allows for hassle-free accessibility additions in your application — possibly in 1 line of code!
 
-##Motivation
+## Motivation
 
 I was finishing up a project of mine, and as an afterthought, of course, I decided to add Accessibility of navigation in custom views and Accessibility of spoken text. Since I always disliked accessibility additions "uglifying" my XML Layout Resource files, I decided to do it programmatically; however, that typically would only "uglifying" my Java code, and if there is anything I dislike the more, it is ugly Java code. 
 
 So for kicks and giggles, I went the Java code path and object-orientified it and was able to produce this libary.
 
-##Usage
+## Usage
 
-###Custom View
+### Custom View
 
-    public class ContributionView extends RelativeLayout implements Mappable<Resume.Contribution> {
+    public class CustomViewLayout extends RelativeLayout {
     
         // Called from Constructors
         private void init(AttributeSet attrs, int defStyle) {
     
-            root = (ViewGroup) LayoutInflater.from(getContext()).inflate(
-                    R.layout.internal_contribution_view, this, true);
+            root = (ViewGroup) LayoutInflater.from(...);
     
             ...
 
